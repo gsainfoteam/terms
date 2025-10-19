@@ -1,0 +1,43 @@
+{{ $text := .Get "text" | default "버튼" }}
+{{ $url := .Get "url" | default "#" }}
+{{ $type := .Get "type" | default "primary" }}
+{{ $size := .Get "size" |
+  default "md"
+}}
+{{ $baseClasses := "" }}
+{{ if eq $type "primary" }}
+  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 text-white" }}
+{{ else if eq $type
+  "secondary"
+}}
+  {{ $baseClasses = "bg-gray-600 hover:bg-gray-700 text-white" }}
+{{ else if eq $type "success" }}
+  {{ $baseClasses = "bg-green-600 hover:bg-green-700 text-white" }}
+{{ else if eq $type "warning" }}
+  {{ $baseClasses = "bg-yellow-600 hover:bg-yellow-700 text-white" }}
+{{ else if eq
+  $type "danger"
+}}
+  {{ $baseClasses = "bg-red-600 hover:bg-red-700 text-white" }}
+{{ else }}
+  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 text-white" }}
+{{ end }}
+{{ $sizeClasses := "" }}
+{{ if eq $size "sm" }}
+  {{ $sizeClasses = "px-3 py-1.5 text-sm" }}
+{{ else if eq $size "lg" }}
+  {{ $sizeClasses = "px-6 py-3 text-lg" }}
+{{ else }}
+  {{ $sizeClasses = "px-4 py-2" }}
+{{ end }}
+{{ $classes :=
+  printf "%s %s" $baseClasses $sizeClasses
+}}
+
+
+<a
+  href="{{ $url }}"
+  class="inline-block {{ $classes }} rounded-lg transition-colors duration-200 font-medium"
+>
+  {{ $text }}
+</a>

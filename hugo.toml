@@ -2,3 +2,28 @@ baseURL = 'https://terms.gistory.me/'
 languageCode = 'ko-kr'
 title = 'GSA Infoteam'
 disableKinds = ['rss']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+
+[markup.highlight]
+  style = "github"
+  lineNos = true
+  lineNumbersInTable = false
+  noClasses = false
+  codeFences = true
+  guessSyntax = true
+  tabWidth = 2
+
+[params]
+  description = "INFOTEAM 서비스 약관 및 개인정보처리방침"

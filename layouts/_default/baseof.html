@@ -1,12 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <title>{{ if .Title }}{{ .Title }} -{{ end }}{{ .Site.Title }}</title>
     <meta
       name="description"
-      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+      content="{{ if .Description }}
+        {{ .Description }}
+      {{ else }}
+        {{ .Site.Params.description }}
+      {{ end }}"
     />
 
     <!-- Tailwind CSS -->
@@ -14,33 +18,177 @@
 
     <!-- Custom CSS -->
     <style>
+      /* 마크다운 렌더링 스타일 */
       .prose {
         max-width: none;
+        line-height: 1.7;
       }
+
+      /* 제목 스타일 */
       .prose h1 {
-        @apply text-3xl font-bold text-gray-900 mb-6;
+        @apply text-3xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-3;
       }
       .prose h2 {
-        @apply text-2xl font-semibold text-gray-800 mt-8 mb-4;
+        @apply text-2xl font-semibold text-gray-800 mt-8 mb-4 border-l-4 border-blue-500 pl-4;
       }
       .prose h3 {
         @apply text-xl font-semibold text-gray-700 mt-6 mb-3;
       }
+      .prose h4 {
+        @apply text-lg font-semibold text-gray-700 mt-4 mb-2;
+      }
+      .prose h5 {
+        @apply text-base font-semibold text-gray-700 mt-3 mb-2;
+      }
+      .prose h6 {
+        @apply text-sm font-semibold text-gray-600 mt-2 mb-2;
+      }
+
+      /* 텍스트 스타일 */
       .prose p {
         @apply text-gray-600 leading-relaxed mb-4;
-      }
-      .prose ul,
-      .prose ol {
-        @apply text-gray-600 mb-4;
-      }
-      .prose li {
-        @apply mb-2;
       }
       .prose strong {
         @apply font-semibold text-gray-800;
       }
+      .prose em {
+        @apply italic text-gray-700;
+      }
+      .prose code {
+        @apply bg-gray-100 text-red-600 px-1 py-0.5 rounded text-sm font-mono;
+      }
+      .prose a {
+        @apply text-blue-600 hover:text-blue-800 underline transition-colors;
+      }
+
+      /* 리스트 스타일 */
+      .prose ul,
+      .prose ol {
+        @apply text-gray-600 mb-4 pl-6;
+      }
+      .prose ul {
+        @apply list-disc;
+      }
+      .prose ol {
+        @apply list-decimal;
+      }
+      .prose li {
+        @apply mb-2;
+      }
+      .prose li p {
+        @apply mb-2;
+      }
+
+      /* 테이블 스타일 */
+      .prose table {
+        @apply w-full border-collapse border border-gray-300 mb-4;
+      }
+      .prose th {
+        @apply bg-gray-50 border border-gray-300 px-4 py-2 text-left font-semibold text-gray-800;
+      }
+      .prose td {
+        @apply border border-gray-300 px-4 py-2 text-gray-600;
+      }
+      .prose tr:nth-child(even) {
+        @apply bg-gray-50;
+      }
+
+      /* 인용문 스타일 */
       .prose blockquote {
-        @apply border-l-4 border-blue-500 pl-4 italic text-gray-600;
+        @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 bg-blue-50 py-2 mb-4;
+      }
+
+      /* 코드 블록 스타일 */
+      .prose pre {
+        @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+      }
+      .prose pre code {
+        @apply bg-transparent text-gray-100 p-0;
+      }
+
+      /* 수평선 스타일 */
+      .prose hr {
+        @apply border-0 border-t border-gray-300 my-8;
+      }
+
+      /* 이미지 스타일 */
+      .prose img {
+        @apply max-w-full h-auto rounded-lg shadow-sm mb-4;
+      }
+
+      /* 정의 리스트 스타일 */
+      .prose dl {
+        @apply mb-4;
+      }
+      .prose dt {
+        @apply font-semibold text-gray-800 mb-1;
+      }
+      .prose dd {
+        @apply text-gray-600 mb-2 ml-4;
+      }
+
+      /* 작업 리스트 스타일 */
+      .prose input[type="checkbox"] {
+        @apply mr-2;
+      }
+
+      /* 각주 스타일 */
+      .prose .footnotes {
+        @apply border-t border-gray-300 pt-4 mt-8;
+      }
+      .prose .footnotes ol {
+        @apply list-decimal;
+      }
+      .prose .footnotes li {
+        @apply text-sm text-gray-500;
+      }
+
+      /* 목차 스타일 */
+      .toc {
+        @apply text-sm;
+      }
+      .toc ul {
+        @apply list-none pl-0;
+      }
+      .toc li {
+        @apply mb-1;
+      }
+      .toc a {
+        @apply text-gray-600 hover:text-blue-600 no-underline transition-colors;
+      }
+      .toc ul ul {
+        @apply pl-4 mt-1;
+      }
+
+      /* 코드 하이라이팅 스타일 */
+      .highlight {
+        @apply rounded-lg overflow-hidden;
+      }
+      .highlight pre {
+        @apply m-0 p-4 overflow-x-auto;
+      }
+
+      /* 반응형 스타일 */
+      @media (max-width: 768px) {
+        .prose {
+          @apply text-sm;
+        }
+        .prose h1 {
+          @apply text-2xl;
+        }
+        .prose h2 {
+          @apply text-xl;
+        }
+        .prose h3 {
+          @apply text-lg;
+        }
+        .prose table {
+          @apply text-xs;
+        }
+        .prose th,
+        .prose td {
+          @apply px-2 py-1;
+        }
       }
     </style>
   </head>
