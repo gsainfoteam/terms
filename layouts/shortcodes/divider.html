@@ -2,13 +2,18 @@
 {{ $style := .Get "style" | default "line" }}
 
 {{ if $text }}
-  <div class="divider-with-text">
-    <div class="divider-text">{{ $text }}</div>
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-center text-sm">
+      <span class="px-2 bg-white text-gray-500">{{ $text }}</span>
+    </div>
   </div>
 {{ else if eq $style "dotted" }}
-  <hr class="divider divider-dotted" />
+  <hr class="my-8 border-t-2 border-dotted border-gray-300" />
 {{ else if eq $style "dashed" }}
-  <hr class="divider divider-dashed" />
+  <hr class="my-8 border-t-2 border-dashed border-gray-300" />
 {{ else }}
-  <hr class="divider" />
+  <hr class="my-8 border-t border-gray-300" />
 {{ end }}

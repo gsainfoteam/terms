@@ -2,11 +2,15 @@
 {{ $class := .Get "class" | default "" }}
 
 
-<div class="card {{ $class }}">
+<div class="bg-white rounded-lg shadow-sm border p-6 {{ $class }}">
   {{ if $title }}
-    <div class="card-title">{{ $title }}</div>
+    <div
+      class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200"
+    >
+      {{ $title }}
+    </div>
   {{ end }}
-  <div class="card-content">
+  <div class="prose max-w-none">
     {{ .Inner | markdownify }}
   </div>
 </div>

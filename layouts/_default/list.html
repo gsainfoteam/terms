@@ -43,7 +43,8 @@
                 {{ if .Pages }}
                   {{ range first 1 .Pages }}
                     {{ if .Date }}
-                      시행일: {{ .Date.Format "2006년 1월 2일" }}
+                      시행일:
+                      {{ .Date.Format "2006년 1월 2일" }}
                     {{ end }}
                   {{ end }}
                 {{ end }}
@@ -81,7 +82,8 @@
                     </h3>
                     <p class="text-gray-600 text-sm mt-1">
                       {{ if .Date }}
-                        시행일: {{ .Date.Format "2006년 1월 2일" }}
+                        시행일:
+                        {{ .Date.Format "2006년 1월 2일" }}
                       {{ end }}
                     </p>
                   </div>
