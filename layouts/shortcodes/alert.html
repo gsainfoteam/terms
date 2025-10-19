@@ -1,36 +1,20 @@
 {{ $type := .Get "type" | default "info" }}
 {{ $icon := "" }}
-{{ $bgColor := "" }}
-{{ $borderColor := "" }}
-{{ $textColor := "" }}
+
 {{ if eq $type "warning" }}
   {{ $icon = "⚠️" }}
-  {{ $bgColor = "bg-yellow-50" }}
-  {{ $borderColor = "border-yellow-500" }}
-  {{ $textColor = "text-yellow-800" }}
-{{ else if eq $type
-  "error"
-}}
+{{ else if eq $type "error" }}
   {{ $icon = "❌" }}
-  {{ $bgColor = "bg-red-50" }}
-  {{ $borderColor = "border-red-500" }}
-  {{ $textColor = "text-red-800" }}
 {{ else if eq $type "success" }}
   {{ $icon = "✅" }}
-  {{ $bgColor = "bg-green-50" }}
-  {{ $borderColor = "border-green-500" }}
-  {{ $textColor = "text-green-800" }}
 {{ else }}
   {{ $icon = "ℹ️" }}
-  {{ $bgColor = "bg-blue-50" }}
-  {{ $borderColor = "border-blue-500" }}
-  {{ $textColor = "text-blue-800" }}
 {{ end }}
 
 
-<div class="{{ $bgColor }} border-l-4 {{ $borderColor }} p-4 mb-4 rounded-r-lg">
-  <div class="flex items-start">
-    <span class="text-lg mr-3">{{ $icon }}</span>
-    <div class="{{ $textColor }}">{{ .Inner | markdownify }}</div>
+<div class="alert alert-{{ $type }}">
+  <span class="alert-icon">{{ $icon }}</span>
+  <div class="alert-content">
+    {{ .Inner | markdownify }}
   </div>
 </div>

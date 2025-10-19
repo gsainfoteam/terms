@@ -1,15 +1,14 @@
 {{ $text := .Get "text" | default "" }}
 {{ $style := .Get "style" | default "line" }}
+
 {{ if $text }}
-  <div class="flex items-center my-8">
-    <div class="flex-1 border-t border-gray-300"></div>
-    <div class="px-4 text-gray-500 text-sm font-medium">{{ $text }}</div>
-    <div class="flex-1 border-t border-gray-300"></div>
+  <div class="divider-with-text">
+    <div class="divider-text">{{ $text }}</div>
   </div>
 {{ else if eq $style "dotted" }}
-  <div class="border-t-2 border-dotted border-gray-300 my-8"></div>
+  <hr class="divider divider-dotted" />
 {{ else if eq $style "dashed" }}
-  <div class="border-t-2 border-dashed border-gray-300 my-8"></div>
+  <hr class="divider divider-dashed" />
 {{ else }}
-  <div class="border-t border-gray-300 my-8"></div>
+  <hr class="divider" />
 {{ end }}
