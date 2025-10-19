@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <div class="bg-white rounded-lg shadow-sm border p-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">
+        {{ if eq .Section "privacy" }} 개인정보처리방침 {{ else if eq .Section
+        "tos" }} 이용약관 {{ else }} {{ .Title }} {{ end }}
+      </h1>
+      <p class="text-gray-600 text-lg">
+        {{ if eq .Section "privacy" }} 개인정보 보호를 위한 처리방침을 확인하실
+        수 있습니다. {{ else if eq .Section "tos" }} 서비스 이용에 관한 약관을
+        확인하실 수 있습니다. {{ else }} {{ .Description }} {{ end }}
+      </p>
+    </div>
+
+    <!-- Current Version -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">현재 버전</h2>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-blue-900">
+              {{ if eq .Section "privacy" }} 개인정보처리방침 {{ else if eq
+              .Section "tos" }} 이용약관 {{ end }}
+            </h3>
+            <p class="text-blue-700 text-sm mt-1">
+              {{ if .Pages }} {{ range first 1 .Pages }} {{ if .Date }} 시행일:
+              {{ .Date.Format "2006년 1월 2일" }} {{ end }} {{ end }} {{ end }}
+            </p>
+          </div>
+          <a
+            href="{{ .Permalink }}"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            현재 버전 보기
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Archive Versions -->
+    {{ if .Pages }}
+    <div>
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">이전 버전</h2>
+      <div class="space-y-3">
+        {{ range .Pages }}
+        <div
+          class="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:bg-gray-100 transition-colors"
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-medium text-gray-900">
+                {{ if eq .Section "privacy" }} 개인정보처리방침 {{ else if eq
+                .Section "tos" }} 이용약관 {{ end }}
+              </h3>
+              <p class="text-gray-600 text-sm mt-1">
+                {{ if .Date }} 시행일: {{ .Date.Format "2006년 1월 2일" }} {{
+                end }}
+              </p>
+            </div>
+            <a
+              href="{{ .Permalink }}"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+            >
+              보기 →
+            </a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    <!-- Content -->
+    {{ if .Content }}
+    <div class="mt-8 prose max-w-none">{{ .Content }}</div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

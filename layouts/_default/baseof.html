@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <meta
+      name="description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <style>
+      .prose {
+        max-width: none;
+      }
+      .prose h1 {
+        @apply text-3xl font-bold text-gray-900 mb-6;
+      }
+      .prose h2 {
+        @apply text-2xl font-semibold text-gray-800 mt-8 mb-4;
+      }
+      .prose h3 {
+        @apply text-xl font-semibold text-gray-700 mt-6 mb-3;
+      }
+      .prose p {
+        @apply text-gray-600 leading-relaxed mb-4;
+      }
+      .prose ul,
+      .prose ol {
+        @apply text-gray-600 mb-4;
+      }
+      .prose li {
+        @apply mb-2;
+      }
+      .prose strong {
+        @apply font-semibold text-gray-800;
+      }
+      .prose blockquote {
+        @apply border-l-4 border-blue-500 pl-4 italic text-gray-600;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="bg-white shadow-sm border-b">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">
+                <a
+                  href="{{ .Site.BaseURL }}"
+                  class="hover:text-blue-600 transition-colors"
+                >
+                  {{ .Site.Title }}
+                </a>
+              </h1>
+              <p class="text-gray-600 mt-1">서비스 약관 및 개인정보처리방침</p>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+              <div class="relative group">
+                <button
+                  class="text-gray-600 hover:text-blue-600 transition-colors flex items-center"
+                >
+                  POT-G
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+                >
+                  <div class="py-2">
+                    <a
+                      href="{{ .Site.BaseURL }}pot-g/tos"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >이용약관</a
+                    >
+                    <a
+                      href="{{ .Site.BaseURL }}pot-g/privacy"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >개인정보처리방침</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="relative group">
+                <button
+                  class="text-gray-600 hover:text-blue-600 transition-colors flex items-center"
+                >
+                  Ziggle
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+                >
+                  <div class="py-2">
+                    <a
+                      href="{{ .Site.BaseURL }}ziggle/tos"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >이용약관</a
+                    >
+                    <a
+                      href="{{ .Site.BaseURL }}ziggle/privacy"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >개인정보처리방침</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="flex-1">{{ block "main" . }}{{ end }}</main>
+
+      <!-- Footer -->
+      <footer class="bg-white border-t mt-auto">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+          <div class="text-center text-gray-500 text-sm">
+            <p>
+              &copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights
+              reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
