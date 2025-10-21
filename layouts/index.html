@@ -22,8 +22,6 @@
       {{ end }}
     {{ end }}
 
-    {{ fmt.Warnf "%+v\n" $services }}
-
     {{/* 서비스별 섹션 렌더링 */}}
     {{ $serviceConfig := dict
       "pot-g" (dict "name" "POT-G" "color" "blue" "icon" "P")
