@@ -15,6 +15,11 @@ disableKinds = ['rss']
       table = true
       taskList = true
       typographer = true
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 1
+
 
 [markup.highlight]
   style = "github"
