@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="bg-white rounded-lg shadow-sm border p-8">
       <!-- Header -->
-      <div class="mb-8 pb-6 border-b border-gray-200">
+      <div class="mb-8 pb-4 border-b border-gray-200">
         <div
           class="flex flex-col md:flex-row md:items-center justify-between mb-4"
         >
@@ -21,23 +21,6 @@
             {{ if .Date }}시행일: {{ .Date.Format "2006년 1월 2일" }}{{ end }}
           </div>
         </div>
-
-        <!-- Navigation -->
-        <div class="flex items-center space-x-4 text-sm">
-          <a
-            href="{{ .Site.BaseURL }}{{ .Section }}"
-            class="text-blue-600 hover:text-blue-800 transition-colors"
-          >
-            ← 목록으로 돌아가기
-          </a>
-          <span class="text-gray-300">|</span>
-          <a
-            href="{{ .Site.BaseURL }}"
-            class="text-gray-600 hover:text-gray-800 transition-colors"
-          >
-            홈으로
-          </a>
-        </div>
       </div>
 
       <!-- Content -->
@@ -51,20 +34,6 @@
               최종 수정일:
               {{ .Date.Format "2006년 1월 2일" }}
             {{ end }}
-          </div>
-          <div class="flex space-x-4">
-            <a
-              href="{{ .Site.BaseURL }}{{ .Section }}"
-              class="text-blue-600 hover:text-blue-800 transition-colors text-sm"
-            >
-              목록으로 돌아가기
-            </a>
-            <a
-              href="{{ .Site.BaseURL }}"
-              class="text-gray-600 hover:text-gray-800 transition-colors text-sm"
-            >
-              홈으로
-            </a>
           </div>
         </div>
       </div>
