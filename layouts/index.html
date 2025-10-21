@@ -6,11 +6,18 @@
     {{/* 서비스별로 그룹화하여 표시 */}}
     {{ $services := dict }}
     {{ range $_, $section := .Site.Sections }}
-      {{ range $_, $page := .Pages }}
+      {{ range .Pages }}
         {{ $serviceName := strings.TrimPrefix "/" $section.Path }}
         {{ $serviceData := index $services $serviceName | default dict }}
-        {{ $type := index (strings.Split $page.Path "/" | last 1) 0 }}
-        {{ $serviceData = merge $serviceData (dict $type $page) }}
+        {{ $type := index (strings.Split .Path "/" | last 2) 0 }}
+        {{ $cachedPage := index $serviceData $type }}
+        {{ if $cachedPage }}
+          {{ if ge .Date $cachedPage.Date }}
+            {{ $serviceData = merge $serviceData (dict $type .) }}
+          {{ end }}
+        {{ else }}
+          {{ $serviceData = merge $serviceData (dict $type .) }}
+        {{ end }}
         {{ $services = merge $services (dict $serviceName $serviceData) }}
       {{ end }}
     {{ end }}
