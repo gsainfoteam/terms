@@ -32,3 +32,11 @@ disableKinds = ['rss']
 
 [params]
   description = "INFOTEAM 서비스 약관 및 개인정보처리방침"
+
+[module]
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "content/account"
+    target = "content/idp"
