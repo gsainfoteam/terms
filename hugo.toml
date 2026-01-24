@@ -5,6 +5,9 @@ disableKinds = ['rss']
 buildFuture = true
 buildDrafts = true
 
+[outputs]
+  section = ["HTML", "JSON"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
