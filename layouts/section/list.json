@@ -10,5 +10,5 @@
 {
   "service": {{ $serviceName | jsonify }},
   "privacy": {{ index $serviceData "privacy" | jsonify }},
-  "tos": {{ index $serviceData "tos" | jsonify }},
+  "tos": {{ index $serviceData "tos" | jsonify }}
 }
