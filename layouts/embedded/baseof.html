@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <meta
+      name="description"
+      content="{{ if .Description }}
+        {{ .Description }}
+      {{ else }}
+        {{- .Site.Params.description -}}
+      {{ end }}"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/markdown.css" />
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/components.css" />
+  </head>
+  <body>
+    {{ block "main" . }}{{ end }}
+  </body>
+</html>

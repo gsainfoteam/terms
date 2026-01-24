@@ -42,3 +42,6 @@ buildDrafts = true
   [[module.mounts]]
     source = "content/account"
     target = "content/idp"
+  [[module.mounts]]
+    source = "content"
+    target = "content/embedded"
