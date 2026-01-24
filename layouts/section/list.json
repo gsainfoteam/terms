@@ -1,7 +1,7 @@
 {{ $serviceName := .Section -}}
 {{ $serviceData := dict -}}
 {{ range .Pages -}}
-  {{ if not .Draft }}
+  {{ if not .Draft -}}
     {{ $type := index (strings.Split .Path "/" | last 2) 0 -}}
     {{ $version := index (strings.Split .Path "/" | last 1) 0 | int -}}
     {{ $serviceData = merge $serviceData (dict $type $version) -}}
