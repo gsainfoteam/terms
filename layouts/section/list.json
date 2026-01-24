@@ -8,7 +8,7 @@
     {{ if ge .Date $cachedPage.Date -}}
       {{ $serviceData = merge $serviceData (dict $type $version) -}}
     {{ end -}}
-  {{ else if not .Draft - }}
+  {{ else if not .Draft -}}
     {{ $serviceData = merge $serviceData (dict $type $version) -}}
   {{ end -}}
 {{ end -}}
