@@ -2,7 +2,7 @@
 {{ $serviceData := dict -}}
 {{ range .Pages -}}
   {{ $type := index (strings.Split .Path "/" | last 2) 0 -}}
-  {{ $version := index (strings.Split .Path "/" | last 1) 0 | int -}}
+  {{ $version := index (strings.Split .Path "/" | last 1) 0 -}}
   {{ $cachedPage := index $serviceData $type -}}
   {{ $data := dict "version" $version "date" .Date -}}
   {{ if $cachedPage -}}
