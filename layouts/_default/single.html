@@ -21,6 +21,11 @@
             {{ if .Date }}시행일: {{ .Date.Format "2006년 1월 2일" }}{{ end }}
           </div>
         </div>
+        {{ if .Draft }}
+        <div class="text-sm text-red-500">
+          아직 작성중인 약관입니다. 아래 내용은 효력이 발생하지 않습니다.
+        </div>
+        {{ end }}
       </div>
 
       <!-- Content -->

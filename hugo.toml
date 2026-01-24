@@ -3,6 +3,7 @@ languageCode = 'ko-kr'
 title = 'GSA Infoteam'
 disableKinds = ['rss']
 buildFuture = true
+buildDrafts = true
 
 [markup]
   [markup.goldmark]

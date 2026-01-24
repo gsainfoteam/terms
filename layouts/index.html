@@ -15,7 +15,7 @@
           {{ if ge .Date $cachedPage.Date }}
             {{ $serviceData = merge $serviceData (dict $type .) }}
           {{ end }}
-        {{ else }}
+        {{ else if not .Draft }}
           {{ $serviceData = merge $serviceData (dict $type .) }}
         {{ end }}
         {{ $services = merge $services (dict $serviceName $serviceData) }}
