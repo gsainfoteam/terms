@@ -4,16 +4,17 @@
   {{ $type := index (strings.Split .Path "/" | last 2) 0 -}}
   {{ $version := index (strings.Split .Path "/" | last 1) 0 | int -}}
   {{ $cachedPage := index $serviceData $type -}}
+  {{ $data := dict "version" $version "date" .Date -}}
   {{ if $cachedPage -}}
-    {{ if ge .Date $cachedPage.Date -}}
-      {{ $serviceData = merge $serviceData (dict $type $version) -}}
+    {{ if ge .Date (index $cachedPage "date") -}}
+      {{ $serviceData = merge $serviceData (dict $type $data) -}}
     {{ end -}}
   {{ else if not .Draft -}}
-    {{ $serviceData = merge $serviceData (dict $type $version) -}}
+    {{ $serviceData = merge $serviceData (dict $type $data) -}}
   {{ end -}}
 {{ end -}}
 {
   "service": {{ $serviceName | jsonify }},
-  "privacy": {{ index $serviceData "privacy" | jsonify }},
-  "tos": {{ index $serviceData "tos" | jsonify }}
+  "privacy": {{ index (index $serviceData "privacy") "version" | jsonify }},
+  "tos": {{ index (index $serviceData "tos") "version" | jsonify }}
 }
