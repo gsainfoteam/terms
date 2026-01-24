@@ -1,9 +1,14 @@
 {{ $serviceName := .Section -}}
 {{ $serviceData := dict -}}
 {{ range .Pages -}}
-  {{ if not .Draft -}}
-    {{ $type := index (strings.Split .Path "/" | last 2) 0 -}}
-    {{ $version := index (strings.Split .Path "/" | last 1) 0 | int -}}
+  {{ $type := index (strings.Split .Path "/" | last 2) 0 -}}
+  {{ $version := index (strings.Split .Path "/" | last 1) 0 | int -}}
+  {{ $cachedPage := index $serviceData $type -}}
+  {{ if $cachedPage -}}
+    {{ if ge .Date $cachedPage.Date -}}
+      {{ $serviceData = merge $serviceData (dict $type $version) -}}
+    {{ end -}}
+  {{ else if not .Draft - }}
     {{ $serviceData = merge $serviceData (dict $type $version) -}}
   {{ end -}}
 {{ end -}}
