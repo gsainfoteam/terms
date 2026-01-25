@@ -1,13 +1,11 @@
 {{ define "main" }}
-  <div class="px-4 py-4">
-    <h1 class="text-3xl font-bold text-gray-900 mb-4">
-      {{- .Title -}}
-    </h1>
-    {{ if .Draft }}
-    <div class="text-sm text-red-500">
-      아직 작성중인 약관입니다. 아래 내용은 효력이 발생하지 않습니다.
-    </div>
-    {{ end }}
-    <div class="prose max-w-none">{{ .Content }}</div>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">
+    {{- .Title -}}
+  </h1>
+  {{ if .Draft }}
+  <div class="text-sm text-red-500">
+    아직 작성중인 약관입니다. 아래 내용은 효력이 발생하지 않습니다.
   </div>
+  {{ end }}
+  <div class="prose max-w-none">{{ .Content }}</div>
 {{ end }}
