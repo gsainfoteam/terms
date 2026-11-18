@@ -27,13 +27,7 @@ buildDrafts = true
 
 
 [markup.highlight]
-  style = "github"
-  lineNos = false
-  lineNumbersInTable = false
-  noClasses = false
-  codeFences = true
-  guessSyntax = true
-  tabWidth = 2
+  codeFences = false
 
 [params]
   description = "INFOTEAM 서비스 약관 및 개인정보처리방침"
