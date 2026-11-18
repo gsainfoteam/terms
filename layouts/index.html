@@ -3,92 +3,89 @@
     <!-- 동적으로 생성되는 서비스별 약관 섹션 -->
     <h2 class="text-xl font-semibold text-gray-900 mb-6">서비스별 약관</h2>
 
-    {{/* 서비스별로 그룹화하여 표시 */}}
+    {{ $contentDir := path.Join hugo.WorkingDir "content" }}
     {{ $services := dict }}
-    {{ range $_, $section := .Site.Sections }}
-      {{ range .Pages }}
-        {{ $serviceName := strings.TrimPrefix "/" $section.Path }}
-        {{ $serviceData := index $services $serviceName | default dict }}
+    {{ range $section := .Site.Sections }}
+      {{ $serviceName := $section.Section }}
+      {{ $latest := dict }}
+      {{ $isMountAlias := false }}
+      {{ range $section.Pages }}
+        {{ if not (strings.HasPrefix .File.Filename (printf "%s/" (path.Join $contentDir $serviceName))) }}
+          {{ $isMountAlias = true }}
+        {{ end }}
         {{ $type := index (strings.Split .Path "/" | last 2) 0 }}
-        {{ $cachedPage := index $serviceData $type }}
+        {{ $cachedPage := index $latest $type }}
         {{ if $cachedPage }}
           {{ if ge .Date $cachedPage.Date }}
-            {{ $serviceData = merge $serviceData (dict $type .) }}
+            {{ $latest = merge $latest (dict $type .) }}
           {{ end }}
         {{ else if not .Draft }}
-          {{ $serviceData = merge $serviceData (dict $type .) }}
+          {{ $latest = merge $latest (dict $type .) }}
         {{ end }}
-        {{ $services = merge $services (dict $serviceName $serviceData) }}
+      {{ end }}
+
+      {{ if and (not $isMountAlias) $latest }}
+        {{ $name := $serviceName }}
+        {{ with $section.File }}
+          {{ $name = $section.Title }}
+        {{ else }}
+          {{ warnf "content/%s/_index.md가 없어 이름·색·아이콘을 기본값으로 표시합니다" $serviceName }}
+        {{ end }}
+        {{ $config := dict
+          "name" $name
+          "color" ($section.Params.color | default "gray")
+          "icon" ($section.Params.icon | default (substr $serviceName 0 1 | upper))
+        }}
+        {{ $services = merge $services (dict $serviceName (dict "config" $config "docs" $latest)) }}
       {{ end }}
     {{ end }}
 
-    {{/* 서비스별 섹션 렌더링 */}}
-    {{ $serviceConfig := dict
-      "pot-g" (dict "name" "POT-G" "color" "blue" "icon" "P")
-      "ziggle" (dict "name" "Ziggle" "color" "purple" "icon" "Z")
-      "account" (dict "name" "인포팀 계정" "color" "green" "icon" "A")
-      "moving-out" (dict "name" "하우스 퇴사검사" "color" "orange" "icon" "M")
-      "bbosong" (dict "name" "뽀송" "color" "sky" "icon" "B")
-      "flyer-g" (dict "name" "전단지" "color" "rose" "icon" "F")
-      "cheers" (dict "name" "Cheers" "color" "amber" "icon" "C")
-    }}
-
-    {{ $typeMap := dict
-      "privacy" "개인정보처리방침"
-      "tos" "이용약관"
-    }}
-
-    {{ range $serviceName, $serviceData := $services }}
-      {{ $config := index $serviceConfig $serviceName }}
-      {{ if and (not $config) (not (in (slice "embedded" "idp") $serviceName)) }}
-        {{ warnf "layouts/index.html: '%s' 서비스가 $serviceConfig에 없어 목록에서 빠집니다" $serviceName }}
-      {{ end }}
-      {{ if and $config $serviceData }}
-        <div class="mb-8">
-          <h3 class="text-lg font-medium text-gray-900 mb-4 flex items-center">
-            <span
-              class="w-8 h-8 bg-{{ $config.color }}-100 rounded-full flex items-center justify-center mr-3"
+    {{ range $serviceName, $service := $services }}
+      {{ $config := $service.config }}
+      <div class="mb-8">
+        <h3 class="text-lg font-medium text-gray-900 mb-4 flex items-center">
+          <span
+            class="w-8 h-8 bg-{{ $config.color }}-100 rounded-full flex items-center justify-center mr-3"
+          >
+            <span class="text-sm font-bold text-{{ $config.color }}-600"
+              >{{ $config.icon }}</span
             >
-              <span class="text-sm font-bold text-{{ $config.color }}-600"
-                >{{ $config.icon }}</span
+          </span>
+          {{ $config.name }}
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          {{ range $service.docs }}
+            <a
+              href="{{ .Permalink }}"
+              class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-300 hover:shadow-md transition"
+            >
+              <div>
+                <h4 class="font-medium text-gray-900">{{ .Title }}</h4>
+                <p class="text-sm text-gray-600">
+                  {{ if .Date }}
+                    {{ .Date.Format "2006년 1월 2일" }} 시행
+                  {{ else }}
+                    {{ .Lastmod.Format "2006년 1월 2일" }} 업데이트
+                  {{ end }}
+                </p>
+              </div>
+              <svg
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-            </span>
-            {{ $config.name }}
-          </h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            {{ range $type, $page := $serviceData }}
-              <a
-                href="{{ .Permalink }}"
-                class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <div>
-                  <h4 class="font-medium text-gray-900">{{ .Title }}</h4>
-                  <p class="text-sm text-gray-600">
-                    {{ if .Date }}
-                      {{ .Date.Format "2006년 1월 2일" }} 시행
-                    {{ else }}
-                      {{ .Lastmod.Format "2006년 1월 2일" }} 업데이트
-                    {{ end }}
-                  </p>
-                </div>
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            {{ end }}
-          </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          {{ end }}
         </div>
-      {{ end }}
+      </div>
     {{ end }}
   </div>
 {{ end }}
