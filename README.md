@@ -32,7 +32,6 @@ const { theme } = useTheme(); // 'light' | 'dark' | 'system'
 | `auto` | iframe 요소의 `color-scheme`. 테마를 바꿔도 다시 불러오지 않아야 할 때 씁니다. |
 
 - 테마는 스크립트로 고르므로 `sandbox`에는 `allow-scripts`가 있어야 합니다.
-- `invert`로 다크 모드를 흉내 내고 있었다면 지워주세요. 남겨두면 다시 밝아집니다.
 
 ## 서비스 추가하기
 
