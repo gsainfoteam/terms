@@ -6,17 +6,7 @@
         <div
           class="flex flex-col md:flex-row md:items-center justify-between mb-4"
         >
-          <h1 class="text-3xl font-bold text-gray-900">
-            {{ if eq .Section "privacy" }}
-              개인정보처리방침
-            {{ else if eq .Section
-              "tos"
-            }}
-              이용약관
-            {{ else }}
-              {{ .Title }}
-            {{ end }}
-          </h1>
+          <h1 class="text-3xl font-bold text-gray-900">{{ .Title }}</h1>
           <div class="text-sm text-gray-500">
             {{ if .Date }}시행일: {{ .Date.Format "2006년 1월 2일" }}{{ end }}
           </div>
