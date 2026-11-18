@@ -1,7 +1,7 @@
 {{ define "main" }}
   <div class="max-w-4xl mx-auto px-4 py-8">
     <!-- 동적으로 생성되는 서비스별 약관 섹션 -->
-    <h2 class="text-xl font-semibold text-gray-900 mb-6">서비스별 약관</h2>
+    <h2 class="text-xl font-semibold text-fg mb-6">서비스별 약관</h2>
 
     {{ $contentDir := path.Join hugo.WorkingDir "content" }}
     {{ $services := dict }}
@@ -47,10 +47,10 @@
     {{ range $serviceName, $service := $services }}
       {{ $config := $service.config }}
       <div class="mb-8">
-        <h3 class="text-lg font-medium text-gray-900 mb-4 flex items-center">
+        <h3 class="text-lg font-medium text-fg mb-4 flex items-center">
           <span
             class="w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm font-bold"
-            style="background-color: color-mix(in srgb, {{ $config.color | safeCSS }} 14%, white); color: {{ $config.color | safeCSS }}"
+            style="background-color: color-mix(in srgb, {{ $config.color | safeCSS }} 14%, var(--surface)); color: color-mix(in srgb, {{ $config.color | safeCSS }} 75%, var(--fg))"
           >
             {{ $config.icon }}
           </span>
@@ -60,11 +60,11 @@
           {{ range $service.docs }}
             <a
               href="{{ .Permalink }}"
-              class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-300 hover:shadow-md transition"
+              class="flex items-center justify-between p-4 bg-surface border border-line rounded-lg shadow-sm hover:border-line-strong hover:shadow-md transition"
             >
               <div>
-                <h4 class="font-medium text-gray-900">{{ .Title }}</h4>
-                <p class="text-sm text-gray-600">
+                <h4 class="font-medium text-fg">{{ .Title }}</h4>
+                <p class="text-sm text-muted">
                   {{ if .Date }}
                     {{ .Date.Format "2006년 1월 2일" }} 시행
                   {{ else }}
@@ -73,7 +73,7 @@
                 </p>
               </div>
               <svg
-                class="w-5 h-5 text-gray-400"
+                class="w-5 h-5 text-faint"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

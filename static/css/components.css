@@ -15,31 +15,31 @@
 }
 
 .callout-info {
-  --callout-bg: #f5f9ff;
-  --callout-border: #dbe8fe;
-  --callout-fg: #1e3a8a;
-  --callout-accent: #2563eb;
+  --callout-bg: var(--info-bg);
+  --callout-border: var(--info-border);
+  --callout-fg: var(--info-fg);
+  --callout-accent: var(--info-accent);
 }
 
 .callout-warning {
-  --callout-bg: #fffbeb;
-  --callout-border: #fde9a8;
-  --callout-fg: #78350f;
-  --callout-accent: #d97706;
+  --callout-bg: var(--warning-bg);
+  --callout-border: var(--warning-border);
+  --callout-fg: var(--warning-fg);
+  --callout-accent: var(--warning-accent);
 }
 
 .callout-error {
-  --callout-bg: #fef4f4;
-  --callout-border: #fcd5d5;
-  --callout-fg: #7f1d1d;
-  --callout-accent: #dc2626;
+  --callout-bg: var(--error-bg);
+  --callout-border: var(--error-border);
+  --callout-fg: var(--error-fg);
+  --callout-accent: var(--error-accent);
 }
 
 .callout-success {
-  --callout-bg: #f2fdf5;
-  --callout-border: #c6f0d4;
-  --callout-fg: #14532d;
-  --callout-accent: #16a34a;
+  --callout-bg: var(--success-bg);
+  --callout-border: var(--success-border);
+  --callout-fg: var(--success-fg);
+  --callout-accent: var(--success-accent);
 }
 
 .callout-icon {
@@ -77,10 +77,10 @@
 
 /* Card 컴포넌트 */
 .card {
-  background-color: white;
+  background-color: var(--surface);
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--line);
   padding: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -88,14 +88,14 @@
 .card-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--fg);
   margin-bottom: 0.75rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
   padding-bottom: 0.5rem;
 }
 
 .card-content {
-  color: #4b5563;
+  color: var(--fg-subtle);
 }
 
 /* Button 컴포넌트 */
@@ -213,7 +213,7 @@
 .divider {
   margin: 2rem 0;
   border: 0;
-  border-top: 1px solid #d1d5db;
+  border-top: 1px solid var(--line-strong);
 }
 
 .divider-dotted {
@@ -235,12 +235,12 @@
   content: "";
   flex: 1;
   height: 1px;
-  background-color: #d1d5db;
+  background-color: var(--line-strong);
 }
 
 .divider-text {
   padding: 0 1rem;
-  color: #6b7280;
+  color: var(--fg-muted);
   font-size: 0.875rem;
   font-weight: 500;
 }

@@ -4,16 +4,16 @@
 {{ if $text }}
   <div class="relative my-8">
     <div class="absolute inset-0 flex items-center">
-      <div class="w-full border-t border-gray-300"></div>
+      <div class="w-full border-t border-line-strong"></div>
     </div>
     <div class="relative flex justify-center text-sm">
-      <span class="px-2 bg-white text-gray-500">{{ $text }}</span>
+      <span class="px-2 bg-surface text-muted">{{ $text }}</span>
     </div>
   </div>
 {{ else if eq $style "dotted" }}
-  <hr class="my-8 border-t-2 border-dotted border-gray-300" />
+  <hr class="my-8 border-t-2 border-dotted border-line-strong" />
 {{ else if eq $style "dashed" }}
-  <hr class="my-8 border-t-2 border-dashed border-gray-300" />
+  <hr class="my-8 border-t-2 border-dashed border-line-strong" />
 {{ else }}
-  <hr class="my-8 border-t border-gray-300" />
+  <hr class="my-8 border-t border-line-strong" />
 {{ end }}

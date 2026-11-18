@@ -1,0 +1,134 @@
+:root {
+  --canvas: #f9fafb;
+  --surface: #ffffff;
+  --surface-muted: #f9fafb;
+  --fg: #111827;
+  --fg-body: #374151;
+  --fg-subtle: #4b5563;
+  --fg-muted: #6b7280;
+  --fg-faint: #9ca3af;
+  --line: #e5e7eb;
+  --line-subtle: #f0f1f3;
+  --line-strong: #d1d5db;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
+  --code-bg: #f3f4f6;
+  --code-fg: #be123c;
+  --danger: #ef4444;
+  --logo-filter: none;
+
+  --info-bg: #f5f9ff;
+  --info-border: #dbe8fe;
+  --info-fg: #1e3a8a;
+  --info-accent: #2563eb;
+  --warning-bg: #fffbeb;
+  --warning-border: #fde9a8;
+  --warning-fg: #78350f;
+  --warning-accent: #d97706;
+  --error-bg: #fef4f4;
+  --error-border: #fcd5d5;
+  --error-fg: #7f1d1d;
+  --error-accent: #dc2626;
+  --success-bg: #f2fdf5;
+  --success-border: #c6f0d4;
+  --success-fg: #14532d;
+  --success-accent: #16a34a;
+}
+
+:root:not([data-theme]) {
+  color-scheme: light dark;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] {
+  --canvas: #18181b;
+  --surface: #1f1f23;
+  --surface-muted: #26262b;
+  --fg: #f4f4f5;
+  --fg-body: #d4d4d8;
+  --fg-subtle: #b4b4bc;
+  --fg-muted: #a1a1aa;
+  --fg-faint: #71717a;
+  --line: #303036;
+  --line-subtle: #28282d;
+  --line-strong: #3f3f46;
+  --link: #60a5fa;
+  --link-hover: #93c5fd;
+  --code-bg: #2a2a30;
+  --code-fg: #fda4af;
+  --danger: #f87171;
+  --logo-filter: invert(1);
+
+  --info-bg: rgb(59 130 246 / 0.1);
+  --info-border: rgb(59 130 246 / 0.28);
+  --info-fg: #bfdbfe;
+  --info-accent: #60a5fa;
+  --warning-bg: rgb(245 158 11 / 0.1);
+  --warning-border: rgb(245 158 11 / 0.28);
+  --warning-fg: #fde68a;
+  --warning-accent: #fbbf24;
+  --error-bg: rgb(239 68 68 / 0.1);
+  --error-border: rgb(239 68 68 / 0.28);
+  --error-fg: #fecaca;
+  --error-accent: #f87171;
+  --success-bg: rgb(34 197 94 / 0.1);
+  --success-border: rgb(34 197 94 / 0.28);
+  --success-fg: #bbf7d0;
+  --success-accent: #4ade80;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --canvas: #18181b;
+    --surface: #1f1f23;
+    --surface-muted: #26262b;
+    --fg: #f4f4f5;
+    --fg-body: #d4d4d8;
+    --fg-subtle: #b4b4bc;
+    --fg-muted: #a1a1aa;
+    --fg-faint: #71717a;
+    --line: #303036;
+    --line-subtle: #28282d;
+    --line-strong: #3f3f46;
+    --link: #60a5fa;
+    --link-hover: #93c5fd;
+    --code-bg: #2a2a30;
+    --code-fg: #fda4af;
+    --danger: #f87171;
+    --logo-filter: invert(1);
+
+    --info-bg: rgb(59 130 246 / 0.1);
+    --info-border: rgb(59 130 246 / 0.28);
+    --info-fg: #bfdbfe;
+    --info-accent: #60a5fa;
+    --warning-bg: rgb(245 158 11 / 0.1);
+    --warning-border: rgb(245 158 11 / 0.28);
+    --warning-fg: #fde68a;
+    --warning-accent: #fbbf24;
+    --error-bg: rgb(239 68 68 / 0.1);
+    --error-border: rgb(239 68 68 / 0.28);
+    --error-fg: #fecaca;
+    --error-accent: #f87171;
+    --success-bg: rgb(34 197 94 / 0.1);
+    --success-border: rgb(34 197 94 / 0.28);
+    --success-fg: #bbf7d0;
+    --success-accent: #4ade80;
+  }
+}
+
+body {
+  color: var(--fg);
+}
+
+.logo {
+  filter: var(--logo-filter);
+}
+
+/* iframe 요소와 문서의 color-scheme이 다르면 브라우저가 투명 배경 대신 불투명한 배경을 깐다. 앱이 iframe에 color-scheme을 주지 않아도 되도록, 쿼리로 테마를 정한 임베드 문서는 color-scheme을 선언하지 않는다. */
+:root[data-scheme="none"] {
+  color-scheme: normal;
+  scrollbar-color: var(--line-strong) transparent;
+}

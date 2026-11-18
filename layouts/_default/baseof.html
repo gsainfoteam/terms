@@ -1,35 +1,11 @@
 <!doctype html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="{{ .Site.BaseURL }}favicon.svg" type="image/svg+xml" />
-    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
-    <meta
-      name="description"
-      content="{{ if .Description }}
-        {{ .Description }}
-      {{ else }}
-        {{ .Site.Params.description }}
-      {{ end }}"
-    />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov-dynamic-subset.min.css"
-    />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/markdown.css" />
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/components.css" />
+    {{ partial "head.html" . }}
   </head>
-  <body class="bg-gray-50 min-h-screen">
+  <body class="bg-canvas min-h-screen">
     <div class="min-h-screen flex flex-col">
-      <!-- Header -->
-      <header class="bg-white shadow-sm border-b">
+      <header class="bg-surface shadow-sm border-b border-line">
         <div
           class="max-w-4xl mx-auto px-4 py-4 sm:py-5 flex items-center gap-3 sm:gap-4"
         >
@@ -40,23 +16,21 @@
             <img
               src="{{ .Site.BaseURL }}images/logo.svg"
               alt="{{ .Site.Title }}"
-              class="h-8 sm:h-10 w-auto"
+              class="logo h-8 sm:h-10 w-auto"
             />
           </a>
-          <span class="h-5 w-px bg-gray-300" aria-hidden="true"></span>
-          <p class="text-sm sm:text-base text-gray-500">
+          <span class="h-5 w-px bg-line-strong" aria-hidden="true"></span>
+          <p class="text-sm sm:text-base text-muted">
             서비스 약관 및 개인정보처리방침
           </p>
         </div>
       </header>
 
-      <!-- Main Content -->
       <main class="flex-1">{{ block "main" . }}{{ end }}</main>
 
-      <!-- Footer -->
-      <footer class="bg-white border-t mt-auto">
+      <footer class="bg-surface border-t border-line mt-auto">
         <div class="max-w-4xl mx-auto px-4 py-6">
-          <div class="text-center text-gray-500 text-sm">
+          <div class="text-center text-muted text-sm">
             <p>
               &copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights
               reserved.

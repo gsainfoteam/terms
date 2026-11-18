@@ -2,10 +2,10 @@
 {{ $class := .Get "class" | default "" }}
 
 
-<div class="bg-white rounded-lg shadow-sm border p-6 {{ $class }}">
+<div class="bg-surface rounded-lg shadow-sm border border-line p-6 {{ $class }}">
   {{ if $title }}
     <div
-      class="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200"
+      class="text-lg font-semibold text-fg mb-4 pb-2 border-b border-line"
     >
       {{ $title }}
     </div>
