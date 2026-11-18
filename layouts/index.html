@@ -27,6 +27,10 @@
       "pot-g" (dict "name" "POT-G" "color" "blue" "icon" "P")
       "ziggle" (dict "name" "Ziggle" "color" "purple" "icon" "Z")
       "account" (dict "name" "인포팀 계정" "color" "green" "icon" "A")
+      "moving-out" (dict "name" "하우스 퇴사검사" "color" "orange" "icon" "M")
+      "bbosong" (dict "name" "뽀송" "color" "sky" "icon" "B")
+      "flyer-g" (dict "name" "전단지" "color" "rose" "icon" "F")
+      "cheers" (dict "name" "Cheers" "color" "amber" "icon" "C")
     }}
 
     {{ $typeMap := dict
@@ -36,7 +40,10 @@
 
     {{ range $serviceName, $serviceData := $services }}
       {{ $config := index $serviceConfig $serviceName }}
-      {{ if $config }}
+      {{ if and (not $config) (not (in (slice "embedded" "idp") $serviceName)) }}
+        {{ warnf "layouts/index.html: '%s' 서비스가 $serviceConfig에 없어 목록에서 빠집니다" $serviceName }}
+      {{ end }}
+      {{ if and $config $serviceData }}
         <div class="mb-8">
           <h3 class="text-lg font-medium text-gray-900 mb-4 flex items-center">
             <span
