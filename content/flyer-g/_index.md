@@ -1,6 +1,6 @@
 ---
 title: "전단지"
 params:
-  color: "rose"
+  color: "#e11d48"
   icon: "F"
 ---

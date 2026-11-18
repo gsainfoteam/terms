@@ -1,6 +1,6 @@
 ---
 title: "팟쥐"
 params:
-  color: "blue"
+  color: "#418501"
   icon: "P"
 ---

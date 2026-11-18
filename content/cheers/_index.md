@@ -1,6 +1,6 @@
 ---
 title: "취얼스"
 params:
-  color: "amber"
+  color: "#ff7a00"
   icon: "C"
 ---

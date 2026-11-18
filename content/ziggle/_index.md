@@ -1,6 +1,6 @@
 ---
 title: "지글"
 params:
-  color: "purple"
+  color: "#ff4500"
   icon: "Z"
 ---

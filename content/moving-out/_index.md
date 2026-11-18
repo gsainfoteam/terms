@@ -1,6 +1,6 @@
 ---
 title: "하우스 퇴사검사"
 params:
-  color: "orange"
+  color: "#d68f2a"
   icon: "M"
 ---
