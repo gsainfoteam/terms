@@ -24,19 +24,23 @@
         {{ end }}
       {{ end }}
 
-      {{ if and (not $isMountAlias) $latest }}
-        {{ $name := $serviceName }}
-        {{ with $section.File }}
-          {{ $name = $section.Title }}
-        {{ else }}
-          {{ warnf "content/%s/_index.md가 없어 이름·색·아이콘을 기본값으로 표시합니다" $serviceName }}
+      {{ if not $isMountAlias }}
+        {{ if not $section.File }}
+          {{ errorf "content/%s/_index.md가 없습니다. title, params.color, params.icon을 적어주세요." $serviceName }}
         {{ end }}
-        {{ $config := dict
-          "name" $name
-          "color" ($section.Params.color | default "#6b7280")
-          "icon" ($section.Params.icon | default (substr $serviceName 0 1 | upper))
-        }}
-        {{ $services = merge $services (dict $serviceName (dict "config" $config "docs" $latest)) }}
+        {{ range slice "title" "color" "icon" }}
+          {{ if not (index $section.Params .) }}
+            {{ errorf "content/%s/_index.md에 %s가 없습니다." $serviceName . }}
+          {{ end }}
+        {{ end }}
+        {{ with $latest }}
+          {{ $config := dict
+            "name" $section.Title
+            "color" $section.Params.color
+            "icon" $section.Params.icon
+          }}
+          {{ $services = merge $services (dict $serviceName (dict "config" $config "docs" $latest)) }}
+        {{ end }}
       {{ end }}
     {{ end }}
 
