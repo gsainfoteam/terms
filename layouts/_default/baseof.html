@@ -1,53 +1,36 @@
 <!doctype html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
-    <meta
-      name="description"
-      content="{{ if .Description }}
-        {{ .Description }}
-      {{ else }}
-        {{ .Site.Params.description }}
-      {{ end }}"
-    />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/markdown.css" />
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/components.css" />
+    {{ partial "head.html" . }}
   </head>
-  <body class="bg-gray-50 min-h-screen">
+  <body class="bg-canvas min-h-screen">
     <div class="min-h-screen flex flex-col">
-      <!-- Header -->
-      <header class="bg-white shadow-sm border-b">
-        <div class="max-w-4xl mx-auto px-4 py-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">
-                <a
-                  href="{{ .Site.BaseURL }}"
-                  class="hover:text-blue-600 transition-colors"
-                >
-                  {{ .Site.Title }}
-                </a>
-              </h1>
-              <p class="text-gray-600 mt-1">서비스 약관 및 개인정보처리방침</p>
-            </div>
-          </div>
+      <header class="bg-surface shadow-sm border-b border-line">
+        <div
+          class="max-w-5xl mx-auto px-4 py-4 sm:py-5 flex items-center gap-3 sm:gap-4"
+        >
+          <a
+            href="{{ .Site.BaseURL }}"
+            class="shrink-0 transition-opacity hover:opacity-70"
+          >
+            <img
+              src="{{ .Site.BaseURL }}images/logo.svg"
+              alt="{{ .Site.Title }}"
+              class="logo h-[15px] sm:h-[18px] w-auto"
+            />
+          </a>
+          <span class="h-5 w-px bg-line-strong" aria-hidden="true"></span>
+          <p class="text-sm sm:text-base text-muted">
+            서비스 약관 및 개인정보처리방침
+          </p>
         </div>
       </header>
 
-      <!-- Main Content -->
       <main class="flex-1">{{ block "main" . }}{{ end }}</main>
 
-      <!-- Footer -->
-      <footer class="bg-white border-t mt-auto">
-        <div class="max-w-4xl mx-auto px-4 py-6">
-          <div class="text-center text-gray-500 text-sm">
+      <footer class="bg-surface border-t border-line mt-auto">
+        <div class="max-w-5xl mx-auto px-4 py-6">
+          <div class="text-center text-muted text-sm">
             <p>
               &copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights
               reserved.

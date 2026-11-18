@@ -1,28 +1,18 @@
 {{ define "main" }}
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="bg-white rounded-lg shadow-sm border p-8">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <div class="bg-surface rounded-lg shadow-sm border border-line p-8">
       <!-- Header -->
-      <div class="mb-8 pb-4 border-b border-gray-200">
+      <div class="mb-8 pb-6 border-b border-line">
         <div
-          class="flex flex-col md:flex-row md:items-center justify-between mb-4"
+          class="flex flex-col md:flex-row md:items-center justify-between"
         >
-          <h1 class="text-3xl font-bold text-gray-900">
-            {{ if eq .Section "privacy" }}
-              개인정보처리방침
-            {{ else if eq .Section
-              "tos"
-            }}
-              이용약관
-            {{ else }}
-              {{ .Title }}
-            {{ end }}
-          </h1>
-          <div class="text-sm text-gray-500">
+          <h1 class="text-3xl font-bold text-fg">{{ .Title }}</h1>
+          <div class="text-sm text-muted">
             {{ if .Date }}시행일: {{ .Date.Format "2006년 1월 2일" }}{{ end }}
           </div>
         </div>
         {{ if .Draft }}
-        <div class="text-sm text-red-500">
+        <div class="mt-3 text-sm text-danger">
           아직 작성중인 약관입니다. 아래 내용은 효력이 발생하지 않습니다.
         </div>
         {{ end }}
@@ -32,9 +22,9 @@
       <div class="prose max-w-none">{{ .Content }}</div>
 
       <!-- Footer -->
-      <div class="mt-12 pt-6 border-t border-gray-200">
+      <div class="mt-12 pt-6 border-t border-line">
         <div class="flex items-center justify-between">
-          <div class="text-sm text-gray-500">
+          <div class="text-sm text-muted">
             {{ if .Date }}
               최종 수정일:
               {{ .Date.Format "2006년 1월 2일" }}

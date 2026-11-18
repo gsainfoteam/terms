@@ -1,9 +1,7 @@
 {{ $toc := .Page.TableOfContents }}
 {{ if $toc }}
-  <div class="bg-gray-50 rounded-lg p-6 mb-8">
-    <h3 class="text-lg font-semibold text-gray-900 mb-4">목차</h3>
-    <div class="prose prose-sm max-w-none">
-      {{ $toc }}
-    </div>
-  </div>
+  <nav class="toc" aria-label="목차">
+    <div class="toc-title">목차</div>
+    {{ $toc }}
+  </nav>
 {{ end }}

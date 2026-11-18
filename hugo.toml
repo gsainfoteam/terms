@@ -27,13 +27,7 @@ buildDrafts = true
 
 
 [markup.highlight]
-  style = "github"
-  lineNos = true
-  lineNumbersInTable = false
-  noClasses = false
-  codeFences = true
-  guessSyntax = true
-  tabWidth = 2
+  codeFences = false
 
 [params]
   description = "INFOTEAM 서비스 약관 및 개인정보처리방침"
@@ -45,6 +39,8 @@ buildDrafts = true
   [[module.mounts]]
     source = "content/account"
     target = "content/idp"
+    files = ["! _index.md"]
   [[module.mounts]]
     source = "content"
     target = "content/embedded"
+    files = ["! */_index.md"]
