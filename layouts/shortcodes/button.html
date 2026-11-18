@@ -6,21 +6,21 @@
 }}
 {{ $baseClasses := "" }}
 {{ if eq $type "primary" }}
-  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 text-white" }}
+  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 !text-white" }}
 {{ else if eq $type
   "secondary"
 }}
-  {{ $baseClasses = "bg-gray-600 hover:bg-gray-700 text-white" }}
+  {{ $baseClasses = "bg-gray-600 hover:bg-gray-700 !text-white" }}
 {{ else if eq $type "success" }}
-  {{ $baseClasses = "bg-green-600 hover:bg-green-700 text-white" }}
+  {{ $baseClasses = "bg-green-600 hover:bg-green-700 !text-white" }}
 {{ else if eq $type "warning" }}
-  {{ $baseClasses = "bg-yellow-600 hover:bg-yellow-700 text-white" }}
+  {{ $baseClasses = "bg-yellow-600 hover:bg-yellow-700 !text-white" }}
 {{ else if eq
   $type "danger"
 }}
-  {{ $baseClasses = "bg-red-600 hover:bg-red-700 text-white" }}
+  {{ $baseClasses = "bg-red-600 hover:bg-red-700 !text-white" }}
 {{ else }}
-  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 text-white" }}
+  {{ $baseClasses = "bg-blue-600 hover:bg-blue-700 !text-white" }}
 {{ end }}
 {{ $sizeClasses := "" }}
 {{ if eq $size "sm" }}
@@ -37,7 +37,7 @@
 
 <a
   href="{{ $url }}"
-  class="inline-block {{ $classes }} rounded-lg transition-colors duration-200 font-medium"
+  class="inline-block {{ $classes }} rounded-lg !no-underline transition-colors duration-200 font-medium"
 >
   {{ $text }}
 </a>
