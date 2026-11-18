@@ -26,11 +26,14 @@
 
       {{ if not $isMountAlias }}
         {{ if not $section.File }}
-          {{ errorf "content/%s/_index.md가 없습니다. title, params.color, params.icon을 적어주세요." $serviceName }}
-        {{ end }}
-        {{ range slice "title" "color" "icon" }}
-          {{ if not (index $section.Params .) }}
-            {{ errorf "content/%s/_index.md에 %s가 없습니다." $serviceName . }}
+          {{ errorf "content/%s/_index.md 파일이 없습니다. title, params.color, params.icon을 적어주세요." $serviceName }}
+        {{ else }}
+          {{ $missing := slice }}
+          {{ if not $section.Params.title }}{{ $missing = $missing | append "title" }}{{ end }}
+          {{ if not $section.Params.color }}{{ $missing = $missing | append "params.color" }}{{ end }}
+          {{ if not $section.Params.icon }}{{ $missing = $missing | append "params.icon" }}{{ end }}
+          {{ with $missing }}
+            {{ errorf "content/%s/_index.md에 빠진 값: %s" $serviceName (delimit . ", ") }}
           {{ end }}
         {{ end }}
         {{ with $latest }}
