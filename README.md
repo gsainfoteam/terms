@@ -31,7 +31,7 @@ const { theme } = useTheme(); // 'light' | 'dark' | 'system'
 | `system` | OS 설정 |
 | `auto` | iframe 요소의 `color-scheme`. 테마를 바꿔도 다시 불러오지 않아야 할 때 씁니다. |
 
-- 테마는 스크립트로 고르므로 `sandbox`에는 `allow-scripts`가 있어야 합니다.
+테마는 스크립트로 고르므로 `sandbox`에는 `allow-scripts`가 있어야 합니다.
 
 ## 서비스 추가하기
 
