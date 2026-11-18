@@ -45,5 +45,3 @@ params:
   icon: "P"
 ---
 ```
-
-약관은 `content/<서비스>/<privacy|tos>/<YYMMDD>.md`에 둡니다. 파일 이름이 버전입니다.
