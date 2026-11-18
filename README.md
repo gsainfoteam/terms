@@ -1,4 +1,4 @@
-# GSA Infoteam 약관 모음
+# Terms
 
 GSA Infoteam에서 운영하는 서비스들의 이용약관, 개인정보처리방침 등 문서가 모여있습니다.
 
